@@ -1,34 +1,35 @@
 DEPARTMENT_SECTOR = {
-    'baby':
-            ['alimentacao-do-bebe',
-            'banho-e-higiene',
-            'brinquedos-para-bebe',
-            'passeio-do-bebe',
-            'mini-veiculos',
-            'saude-e-seguranca',
-            'sono-do-bebe'],
+#     'baby':
+#             [#'alimentacao-do-bebe',
+#             #'banho-e-higiene',
+#             #'brinquedos-para-bebe',
+#             #'passeio-do-bebe',
+#             'mini-veiculos',
+#             'saude-e-seguranca',
+#             'sono-do-bebe'],
 
-    'brinquedos':
-            ['artes-e-atividades',
-            'blocos-de-montar',
-            'bonecas',
-            'bonecos-e-cenarios',
-            'carrinhos-e-cia',
-            'colecionaveis-e-miniaturas',
-            'faz-de-conta-e-casinha',
-            'instrumentos-musicais',
-            'jogos',
-            'lançadores',
-            'mini-veiculos-eletricos',
-            'pelucia-e-plush',
-            'pistas-e-autoramas',
-            'quebra-cabecas'],
+#     'brinquedos':
+#             [
+        #         'artes-e-atividades',
+        #     'blocos-de-montar',
+        #     'bonecas',
+        #     'bonecos-e-cenarios',
+        #     'carrinhos-e-cia',
+        #     'colecionaveis-e-miniaturas',
+        #     'faz-de-conta-e-casinha',
+        #     'instrumentos-musicais',
+        #     'jogos',
+        #     'lançadores',
+        #     'mini-veiculos-eletricos',
+        #     'pelucia-e-plush',
+        #     'pistas-e-autoramas',
+        #     'quebra-cabecas'],
 
-    'guloseimas': 
-            ['doces'],
+#     'guloseimas': 
+#             ['doces'],
     
     'casa':
-            ['cama-mesa-e-banho',
+            [#'cama-mesa-e-banho',
             'moveis-e-acessorios',
             'decoracao',
             'utensilios-domesticos'],
@@ -87,3 +88,4 @@ DEPARTMENT_SECTOR = {
             'livros-e-papelaria',
             'eletroportateis']
     }
+
