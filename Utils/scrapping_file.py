@@ -33,11 +33,45 @@ class Scraping_Class:
         page = requests.get(url,headers=headers)
         bs = BeautifulSoup(page.content, 'lxml')
 
-        products_raw = bs.select(""".vtex-product-summary-2-x-clearLink--search-shelf""")
-        products_list = [x['href'] for x in products_raw]
-        
+        products = bs.select(".vtex-product-summary-2-x-element--search-shelf")
+        products = [x for x in products if ("Indisponível" not in str(x))]
 
-        return products_list
+
+        final_name_list = []
+        final_price_list = []
+        for product in products:
+            product_name = product.select(""".vtex-product-summary-2-x-brandName""")
+            try:
+                product_name = product_name[0].text 
+            except:
+                product_name = np.nan
+            final_name_list.append(product_name)
+
+#%% Price
+            product_price_int = product.select(""".vtex-product-price-1-x-currencyInteger--shelf-price-discount""")
+            product_price_int = [product_price_int[x].text for x in range(len(product_price_int))]
+            if len(product_price_int)>1:
+                int_price = product_price_int[0]+product_price_int[1]
+            else:
+                int_price = product_price_int[0]
+
+            float_price = product.select(""".vtex-product-price-1-x-currencyFraction--shelf-price-discount""")
+            try:
+                float_price = float_price[0].text 
+            except:
+                float_price = np.nan
+
+            product_price_final = int_price+'.'+float_price
+            final_price_list.append(product_price_final)
+
+#%% SKU
+        html_body = page.text
+        html_sliced = html_body.split("{")
+        targets = [x.replace(' ','')[10:21] for x in html_sliced if "itemId" in x]
+        skus = [x[:-1] if x[-1] not in ['0123456789'] else x for x in targets]
+        skus = skus[:len(final_name_list)]
+
+        return final_name_list, final_price_list, skus
     
     def scan_num_products(self, url) -> int:
         page = requests.get(url,headers=headers)
@@ -51,37 +85,3 @@ class Scraping_Class:
             num_products = 0
 
         return int(num_products)
-    
-    def get_product_info(self, url):
-        page = requests.get(url,headers=headers)
-        bs = BeautifulSoup(page.content, 'lxml')
-        
-        try:
-            int_prices = bs.select(""".vtex-product-price-1-x-currencyInteger--pdp-price-discount""")
-            if len(int_prices)>1:
-                int_price = int_prices[0].text+int_prices[1].text
-            else: 
-                int_price = int_prices[0].text
-                
-            float_price = bs.select(""".vtex-product-price-1-x-currencyFraction--pdp-price-discount""")[0].text
-            final_price = int_price+'.'+float_price
-        except:
-            final_price = np.nan
-            print('price not found:')
-            print(url)
-
-        try:
-            name = bs.select(""".vtex-store-components-3-x-productBrand """)[0].text
-        except:
-            print('name not found:')
-            print(url)
-            name = np.nan
-
-        try:
-            sku = bs.select(""".vtex-product-identifier-0-x-product-identifier__value""")[0].text
-        except:
-            print('sku not found:')
-            print(url)
-            sku = np.nan
-
-        return final_price, name, sku

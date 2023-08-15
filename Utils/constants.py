@@ -1,12 +1,13 @@
 DEPARTMENT_SECTOR = {
-#     'baby':
-#             [#'alimentacao-do-bebe',
-#             #'banho-e-higiene',
-#             #'brinquedos-para-bebe',
-#             #'passeio-do-bebe',
-#             'mini-veiculos',
-#             'saude-e-seguranca',
-#             'sono-do-bebe'],
+    'baby':
+            [
+                'alimentacao-do-bebe',
+             'banho-e-higiene',
+             'brinquedos-para-bebe',
+             'passeio-do-bebe',
+             'mini-veiculos',
+             'saude-e-seguranca',
+            'sono-do-bebe'],
 
 #     'brinquedos':
 #             [
@@ -81,14 +82,14 @@ DEPARTMENT_SECTOR = {
         #     'jogos-de-video-games',
         #     'smartphones-e-celulares'],
 
-    'produtos importados':
-            [
+#     'produtos importados':
+#             [
         #         'baby',
         #     'brinquedos',
-            'esportes',
-            'games',
-            'computadores-e-informatica',
-            'livros-e-papelaria',
-            'eletroportateis']
+        #     'esportes',
+        #     'games',
+        #     'computadores-e-informatica',
+        #     'livros-e-papelaria',
+        #     'eletroportateis']
     }
 
