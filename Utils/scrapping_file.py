@@ -1,4 +1,5 @@
 from Utils.constants import *
+from time import sleep
 
 import pandas as pd
 from bs4 import BeautifulSoup
@@ -13,7 +14,6 @@ retry = Retry(connect=3, backoff_factor=0.5)
 adapter = HTTPAdapter(max_retries=retry)
 session.mount('http://', adapter)
 session.mount('https://', adapter)
-
 headers = requests.utils.default_headers()
 headers.update({'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.75 Safari/537.36'})
 
@@ -32,7 +32,6 @@ class Scraping_Class:
 
         page = requests.get(url,headers=headers)
         bs = BeautifulSoup(page.content, 'lxml')
-
         products = bs.select(".vtex-product-summary-2-x-element--search-shelf")
         products = [x for x in products if ("Indisponível" not in str(x))]
 
@@ -68,7 +67,7 @@ class Scraping_Class:
         html_body = page.text
         html_sliced = html_body.split("{")
         targets = [x.replace(' ','')[10:21] for x in html_sliced if "itemId" in x]
-        skus = [x[:-1] if x[-1] not in ['0123456789'] else x for x in targets]
+        skus = [x[:-2] if x[-1] not in ['0123456789'] else x for x in targets]
         skus = skus[:len(final_name_list)]
 
         return final_name_list, final_price_list, skus
