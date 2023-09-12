@@ -2,12 +2,13 @@ DEPARTMENT_SECTOR = {
     'baby':
             [
                 'alimentacao-do-bebe',
-             'banho-e-higiene',
-             'brinquedos-para-bebe',
-             'passeio-do-bebe',
-             'mini-veiculos',
-             'saude-e-seguranca',
-            'sono-do-bebe'],
+        #      'banho-e-higiene',
+        #      'brinquedos-para-bebe',
+        #      'passeio-do-bebe',
+        #      'mini-veiculos',
+        #      'saude-e-seguranca',
+        #     'sono-do-bebe'
+            ],
 
 #     'brinquedos':
 #             [
